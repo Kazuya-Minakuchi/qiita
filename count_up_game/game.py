@@ -37,14 +37,14 @@ class CountUpGame:
         self.cnt_max = cnt_max # 一度に上げられる数
         self.cnt = 0 # カウント(ゼロスタート)
         self.players = {
-            k: v for k, v in enumerate(
+            k+1: v for k, v in enumerate(
                 [Player(), EnemyCharacter()]
                 )
             }
         if p1_first: # p1が最初かどうか
-            self.player_num = 0
+            self.player_num = min(self.players)
         else:
-            self.player_num = 1
+            self.player_num = min(self.players) + 1
     
     def play(self):
         # 1ずつ上げても、最大数字ターン目には終わる
