@@ -30,7 +30,9 @@ class EnemyCharacter:
 
 # xx言ったら負けゲーム
 class CountUpGame:
-    def __init__(self, finish_num: int, cnt_max: int, p1_first: bool):
+    def __init__(
+        self, finish_num: int, cnt_max: int, p1_first: bool
+    ):
         self.finish_num = finish_num # 言ったら負け数字
         self.cnt_max = cnt_max # 一度に上げられる数
         self.cnt = 0 # カウント(ゼロスタート)
@@ -39,7 +41,7 @@ class CountUpGame:
                 [Player(), EnemyCharacter()]
                 )
             }
-        if p1_first: # p1が先攻かどうか
+        if p1_first: # p1が最初かどうか
             self.player_num = 0
         else:
             self.player_num = 1
@@ -59,8 +61,8 @@ class CountUpGame:
     
     def print_info(self):
         print("現在")
+        print("プレイヤー", self.player_num)
         print(
-            "プレイヤー", self.player_num,
             "カウント", self.cnt,
             "言ったら負けの数", self.finish_num,
             "最大上げられる数字", self.cnt_max
@@ -81,7 +83,7 @@ class CountUpGame:
     def change_player(self):
         # 最後のプレイヤーのときは、最初に戻る
         if self.player_num == max(self.players):
-            self.player_num = 0
+            self.player_num = min(self.players)
             return
         self.player_num += 1
         return
